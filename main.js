@@ -46,7 +46,7 @@ const buildRecipeList = recipe => {
         orderedList += `<li>${recipe.recipeSteps[item]}</li>`;
     };
     for (item in recipe._ingredientsObj) {
-        unorderedList += `<li>${recipe.ingredientsObj[item]['quantity']} ${recipe.ingredientsObj[item]['unit of measure']}: ${item}`
+        unorderedList += `<li>${recipe.ingredientsObj[item]['quantity']} ${recipe.ingredientsObj[item]['unit of measure']}: ${item}<input type="checkbox" class="ingredient-check-box"></li>`
     };
 
     paragraph.innerHTML = (
@@ -55,7 +55,7 @@ const buildRecipeList = recipe => {
         <img class=\"recipe-image\" src=\"./images/recipes/${recipe.recipeName.toLowerCase()}_front.jpg\" alt=\"${recipe.recipeName} Recipe Card Front\">
         <img class=\"recipe-image\" src=\"./images/recipes/${recipe._recipeName.toLowerCase()}_back.jpg\" alt=\"${recipe.recipeName} Recipe Card Back\">
         <h3>Recipe Ingredients</h3>
-        <ul>${unorderedList}</ul>
+        <ul id="recipe-ingredients">${unorderedList}</ul>
         <h3>Recipe Steps</h3>
         <ol>${orderedList}</ol>`
     );
