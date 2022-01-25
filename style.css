@@ -1,0 +1,8 @@
+nav li{
+    display: table-cell;
+}
+
+.recipe-image {
+    max-width: 600px;
+}
+
