@@ -1,5 +1,4 @@
-const recipeFactory = (recipeName, recipeStepsIn, ingredientsObj) => {
-    let recipeSteps = recipeStepsIn.split('.');
+const recipeFactory = (recipeName, recipeSteps, ingredientsObj) => {;
     return {
     _recipeName : recipeName,
     _recipeSteps : recipeSteps,
@@ -29,6 +28,44 @@ const ingredientsToObject = ingredients => {
     return iObj;
 }
 
+const recipeName = document.getElementById('name-upload');
+const recipePicture = document.getElementById('picture-upload');
+let recipleArray = [];
+let ingredientObj = {};
+let stepsArray = [];
+let recipes = [];
+
+const submitIngredient = () => {
+    const qty = document.getElementById('ingredients-qty-upload');
+    const uom = document.getElementById('ingredients-uom-upload');
+    const item = document.getElementById('ingredients-item-upload');
+    document.getElementById('ingredients-list').innerHTML += `<li>${qty.value} ${uom.value}: ${item.value}</li>`;
+    ingredientObj[item.value] = {
+        'quantity': qty.value,
+        'unit of measure': uom.value
+    };
+    qty.value = "";
+    uom.value = "";
+    item.value = "";
+    qty.focus();
+}
+
+const submitStep = () => {
+    const step = document.getElementById('steps-upload');
+    document.getElementById('steps-list').innerHTML += `<li>${step.value}</li>`;
+    stepsArray.push(step.value);
+    step.value="";
+    step.focus();
+}
+
+const buildRecipe = () => {
+    console.log(`Name: ${recipeName.name}, Ingredients: ${ingredientObj}, Steps: ${stepsArray}`);
+    recipes.push(recipeFactory(recipeName, stepsArray, ingredientObj));
+    stepsArray = [];
+    ingredientObj = {};
+    document.getElementById('steps-list').innerHTML = "";
+    document.getElementById('ingredients-list').innerHTML = "";
+}
 
 let stroganoff = recipeFactory(
     'Stroganoff', (
@@ -38,16 +75,17 @@ let stroganoff = recipeFactory(
     )
 );
 
-const buildRecipeList = recipe => {
-    let paragraph = document.getElementById("recipe-body");
-    let orderedList = ``;
-    let unorderedList = ``;
-    for (item in recipe._recipeSteps) {
-        orderedList += `<li>${recipe.recipeSteps[item]}</li>`;
-    };
-    for (item in recipe._ingredientsObj) {
-        unorderedList += `<li>${recipe.ingredientsObj[item]['quantity']} ${recipe.ingredientsObj[item]['unit of measure']}: ${item}<input type="checkbox" class="ingredient-check-box"></li>`
-    };
+const buildRecipeList = () => {
+    for (recipe in recipes) {
+        let paragraph = document.getElementById("recipe-body");
+        let orderedList = ``;
+        let unorderedList = ``;
+        for (item in recipe._recipeSteps) {
+            orderedList += `<li>${recipe.recipeSteps[item]}</li>`;
+        };
+        for (item in recipe._ingredientsObj) {
+            unorderedList += `<li>${recipe.ingredientsObj[item]['quantity']} ${recipe.ingredientsObj[item]['unit of measure']}: ${item}<input type="checkbox" class="ingredient-check-box"></li>`
+        }
 
     paragraph.innerHTML = (
         `<img class=\"recipe-image\" src=\"./images/recipes/${recipe.recipeName.toLowerCase()}.jpeg\" alt=\"${recipe.recipeName} Dish after Cooking\">
@@ -58,7 +96,8 @@ const buildRecipeList = recipe => {
         <ul id="recipe-ingredients">${unorderedList}</ul>
         <h3>Recipe Steps</h3>
         <ol>${orderedList}</ol>`
-    );
+        );
+    }
 }
 
-buildRecipeList(stroganoff);
+//buildRecipeList(stroganoff);

@@ -2,6 +2,10 @@ nav li{
     display: table-cell;
 }
 
+input {
+    margin: 1%;
+}
+
 .recipe-image {
     max-width: 600px;
 }
@@ -12,5 +16,16 @@ nav li{
 
 .ingredient-check-box {
     vertical-align: middle;
+}
+
+#steps-box {
+    background-color: grey;
+    padding: 1%;
+}
+
+#ingredients-box {
+    background-color: green;
+    padding: 1%;
+    text-align: left;
 }
 

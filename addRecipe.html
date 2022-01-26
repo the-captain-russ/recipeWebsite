@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: https://ogp.me/ns#">
+    <head>
+        <link href="./style.css" rel="stylesheet" type="text/css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>My Recipes</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <h1>Recipes</h1>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li></li>
+                    </ul>
+                </nav>
+            </section>
+        </header>
+        <section>
+            <div id="add-recipe" action="index.html" method="POST">
+                <label for="name-upload">Enter Name of Recipe:</label>
+                <input id="name-upload" type="text" name="name-upload" required>
+                <br>
+                <section id="steps-ingredients-box">
+                    <div id="ingredients-box">
+                        <h2>Ingredients</h2>
+                        <label for="ingredients-qty-upload">Quantity:</label>
+                        <input type="number" name="ingredients-qty-upload" id="ingredients-qty-upload" placeholder="ex. 1">
+                        <label for="ingredients-uom-upload">Unit of Measure:</label>
+                        <input type="text" name="ingredients-uom-upload" id="ingredients-uom-upload" placeholder="ex. cup">
+                        <label for="ingredients-qty-upload">Item:</label>
+                        <input type="text" name="ingredients-item-upload" id="ingredients-item-upload" placeholder="ex. onion">
+                        <button type="button" onclick="submitIngredient()">Add Ingredient</button>
+                        <ul id="ingredients-list"></ul>
+                    </div>
+                    <div id="steps-box">
+                    <h2>Steps:</h2>
+                    <label for="steps-upload">Enter Steps:</label>
+                    <input type="text" name="steps-upload" id="steps-upload" placeholder="ex. bring water to boil">
+                        <button type="button" onclick="submitStep()">Add Step</button>
+                        <ol id="steps-list"></ol>
+                    </div>
+                </section>
+                <br>
+                <label for="front-upload">Upload Front of Card Below:</label>
+                <br>
+                <input id="front-upload" type="file" name="front-upload">
+                <label for="back-upload">Upload Back of Card Below:</label>
+                <br>
+                <input id="back-upload" type="file" name="back-upload">
+                <label for="picture-upload">Upload Picture Below:</label>
+                <br>
+                <input id="picture-upload" type="file" name="picture-upload">
+                <button type="button" onclick="buildRecipe()">Submit Recipe</button>
+            </div>
+        </section>
+        <script src="main.js"></script>
+    </body>
+</html>
